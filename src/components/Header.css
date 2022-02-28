@@ -1,0 +1,10 @@
+
+.compressed{
+    height: 4rem;
+    transition: height .3s ease-out;
+
+}
+.expanded{
+    height: 18rem;
+    transition: height .3s ease-out;
+}
