@@ -1,41 +1,25 @@
-import React, {useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import Category from './Category';
-import * as productsActions from '../store/actions'
-import Product from '../models/Product';
-// import PRODUCTS from '../data/products';
-import { AppDispatch, RootState} from '../store'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Category from "./Category";
+import { AppDispatch, RootState } from "../store";
+import * as categoryActions from "../store/categoryActions";
 
-
-export default function Body() {
-
-    const [productsArray, setProductsArray] = useState<Product[][]>([]);
-
+const Body: React.FC = () => {
+    const categories: string[] = useSelector((state: RootState) => state.categories);
     const dispatch = useDispatch<AppDispatch>();
-     const products = useSelector((state: RootState) => state.products.products);
-    const categories= useSelector((state: RootState) => state.products.categories);
 
-    useEffect(() => {
-            dispatch(productsActions.fetchProductsRequest());
-    }, [dispatch])
+  useEffect(() => {
+      
+    dispatch(categoryActions.fetchCategoriesRequest());
+  }, [dispatch]);
 
-    useEffect(() => {
+  return (
+    <>
+    {
+         categories.map((category: string)=> <Category key={category} name={category}/>)
+    }
+    </>
+  );
+};
 
-        const tempArray: Product[][] = [];
-        categories.forEach(category => {
-            const temp=products.filter(product=>product.category===category);
-            tempArray.push(temp);
-        });
-
-        setProductsArray(tempArray);
-
-    }, [products,categories])
-
-
-
-    return (
-        <>
-            {productsArray.map((item, index) => <Category key={index} name={categories[index]} array={item} />)}
-        </>
-    )
-}
+export default Body;

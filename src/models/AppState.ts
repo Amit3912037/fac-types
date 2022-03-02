@@ -2,9 +2,18 @@
 import Product from "./Product";
 
 type AppState={
-    products: Product[];
-    isLoading: boolean;
-    categories: string[];
+    Electronics: {
+        loading: boolean,
+        categoryProducts: Product[]
+    },
+    Clothes:{
+        loading: boolean,
+        categoryProducts: Product[]
+    },
+    Laptops:{
+        loading: boolean,
+        categoryProducts: Product[]
+    }
 }
 
 export default AppState;

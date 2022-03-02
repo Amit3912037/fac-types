@@ -2,16 +2,22 @@ import { FETCH_PRODUCTS_FAILURE,FETCH_PRODUCTS_REQUEST,FETCH_PRODUCTS_SUCCESS } 
 import Product from './Product';
 
 
+export interface FetchProductsRequestPayload {
+    categoryName: string
+}
 export interface FetchProductsSuccessPayload {
     products: Product[];
+    categoryName: string
 }
 
 export interface FetchProductsFailurePayload {
     error: string;
+    categoryName: string
 }
 
-export interface FetchProductsRequest {
+export type FetchProductsRequest = {
     type: typeof FETCH_PRODUCTS_REQUEST;
+    payload: FetchProductsRequestPayload;
 }
 
 export type FetchProductsSuccess = {
