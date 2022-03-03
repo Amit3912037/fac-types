@@ -4,7 +4,7 @@ import { FETCH_CATEGORIES_FAILURE,FETCH_CATEGORIES_REQUEST,FETCH_CATEGORIES_SUCC
 //     categoryName: string
 // }
 export interface FetchCategoriesSuccessPayload {
-    categories: String[];
+    categories: string[];
 }
 
 export interface FetchCategoriesFailurePayload {

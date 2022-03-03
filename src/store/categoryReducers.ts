@@ -4,20 +4,37 @@ import {
   FETCH_CATEGORIES_SUCCESS,
 } from "./actionTypes";
 import { CategoryActions } from "../models/categoryTypes";
+import CategoryState from "../models/CategoryState";
 
-// type CategoryState={
-//     categories: string[]
-// }
-const initialState: string[]= [];
+
+const initialState: CategoryState= {
+  categories: [],
+  isLoading: false
+};
 
 const categoriesReducer = (state = initialState, action: CategoryActions) => {
   switch (action.type) {
     case FETCH_CATEGORIES_REQUEST:
-      return state;
+      const requestUpdatedState={
+        ...state,
+        isLoading: true
+      }
+      return requestUpdatedState;
     case FETCH_CATEGORIES_SUCCESS:
-      return action.payload.categories
+      const successUpdatedState={
+        categories: action.payload.categories,
+        isLoading: false
+      }
+      return successUpdatedState;
     case FETCH_CATEGORIES_FAILURE:
-      return state;
+      console.log("failure");
+      
+      const failureUpdatedState={
+        ...state,
+        isLoading: true
+      }
+      return failureUpdatedState;
+      
     default:
       return state;
   }

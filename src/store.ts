@@ -7,8 +7,9 @@ import categoriesReducer from "./store/categoryReducers";
 const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
-  products: productsReducer,
-  categories: categoriesReducer
+  categories: categoriesReducer,
+  products: productsReducer
+  
 });
 
 const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));

@@ -8,29 +8,34 @@ import {
   fetchCategoriesFailure,
   fetchCategoriesSuccess,
 } from "./store/categoryActions";
+import PRODUCTS from "./data/products";
 
 const getCategories = (products: Product[]): Promise<string[]> => {
   return new Promise((resolve, reject) => {
     const categories = products.map((product) => product.category);
     const uniqueCategories = Array.from(new Set(categories));
+    const randomDuration=Math.floor(Math.random()*5000);
     setTimeout(() => {
       resolve(uniqueCategories);
-    }, 500);
+    }, randomDuration);
   });
 };
 
 const getProducts = (): Promise<Product[]> => {
+  const randomDuration=Math.floor(Math.random()*5000);
+
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(products);
-    }, 500);
+    }, randomDuration);
   });
 };
 
 function* fetchCategoriesSaga() {
   try {
-    const products: Product[] = yield call(getProducts);
-    const categories: string[] = yield call(getCategories, products);
+    const products = PRODUCTS;
+    // yield call(getProducts);
+    const categories: string[] = yield call(getCategories,products);
     yield put(fetchCategoriesSuccess({ categories: categories }));
   } catch (e) {
     yield put(
