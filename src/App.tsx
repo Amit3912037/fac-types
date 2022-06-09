@@ -1,15 +1,13 @@
-import Body from './components/Body';
-import Header from './components/Header';
+import Body from "./components/Body";
+import Header from "./components/Header";
 
-
-
-function App() {
+const App: React.FC = () => {
   return (
     <>
       <Header />
       <Body />
     </>
   );
-}
+};
 
 export default App;
